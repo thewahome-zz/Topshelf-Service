@@ -28,8 +28,8 @@ namespace Topshelf
                 //Setup Account that window service use to run.  
                 configure.RunAsLocalSystem();
                 configure.SetServiceName("TopshelfService");
-                configure.SetDisplayName("TopshelfService");
-                configure.SetDescription("My .Net windows service with Topshelf");
+                configure.SetDisplayName("Topshelf Service");
+                configure.SetDescription("Topshelf service with differently timed methods");
             });
         }
     }
@@ -37,12 +37,34 @@ namespace Topshelf
     public class ServiceManager
     {
         private Timer timer;
+        private Timer sendToApiTimer;
 
         public ServiceManager()
         {
+
+        }
+
+        
+        public void Start()
+        {
+            sendToApiTimer = new Timer();
+            sendToApiTimer.Interval = 1 * 60 * 1000;
+            sendToApiTimer.Elapsed += api_timerElapsed;
+            sendToApiTimer.Enabled = true;
+            sendToApiTimer.Start();
+
             timer = new Timer();
-            timer.Interval = 5 * 60 * 1000;
+            timer.Interval = 2 * 60 * 1000;
             timer.Elapsed += timer_Elapsed;
+            timer.Enabled = true;
+            timer.Start();
+
+            Initiate1600Method();
+        }
+
+        private void api_timerElapsed(object sender, ElapsedEventArgs e)
+        {
+            MethodToRunEveryOneMinute();
         }
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -50,11 +72,16 @@ namespace Topshelf
             MethodToRunEveryFiveMinutes();
         }
 
-        public void Start()
+        private void MethodToRunEveryOneMinute()
         {
-            timer.Enabled = true;
-            timer.Start();
-            TimeSpan span = TimeSpan.Parse("15:25:01");
+            string message;
+            message = "[Runs every 1 minute] - ";
+            WriteMessage(message);
+        }
+
+        private void Initiate1600Method()
+        {
+            TimeSpan span = TimeSpan.Parse("16:00:00");
             var runAt = DateTime.Today + span;
             //var runAt = DateTime.Today + TimeSpan.FromHours(15);
             if (runAt < DateTime.Now)
@@ -71,14 +98,14 @@ namespace Topshelf
         private void MethodToRunEveryFiveMinutes()
         {
             string message;
-            message = "[Runs every five minutes] - ";
+            message = "[Runs every two minutes] - ";
             WriteMessage(message);
         }
 
         private void MethodtoRunAt1600()
         {
             string message;
-            message = "[Activity Ran at 1500 hrs] - ";
+            message = "[Activity Ran at 1600 hrs] - ";
             WriteMessage(message);
         }
 
@@ -103,6 +130,13 @@ namespace Topshelf
                 timer.Stop();
                 timer.Dispose();
                 timer = null;
+            }
+            if (sendToApiTimer != null)
+            {
+                sendToApiTimer.Enabled = false;
+                sendToApiTimer.Stop();
+                sendToApiTimer.Dispose();
+                sendToApiTimer = null;
             }
         }
 
