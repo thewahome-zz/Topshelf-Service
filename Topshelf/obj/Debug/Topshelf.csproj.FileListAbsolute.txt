@@ -8,13 +8,13 @@ E:\SourceCode\Topshelf\Topshelf\bin\Debug\log4net.xml
 E:\SourceCode\Topshelf\Topshelf\bin\Debug\Topshelf.xml
 E:\SourceCode\Topshelf\Topshelf\obj\Debug\Topshelf.exe
 E:\SourceCode\Topshelf\Topshelf\obj\Debug\Topshelf.pdb
-E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\Topshelf.exe.config
 E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\Topshelf.exe
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\Topshelf.dll
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\Topshelf.exe.config
 E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\Topshelf.pdb
 E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\log4net.dll
-E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\Topshelf.dll
 E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\log4net.xml
 E:\SourceCode\Topshelf-Service\Topshelf\bin\Debug\Topshelf.xml
-E:\SourceCode\Topshelf-Service\Topshelf\obj\Debug\Topshelf.csprojResolveAssemblyReference.cache
 E:\SourceCode\Topshelf-Service\Topshelf\obj\Debug\Topshelf.exe
 E:\SourceCode\Topshelf-Service\Topshelf\obj\Debug\Topshelf.pdb
+E:\SourceCode\Topshelf-Service\Topshelf\obj\Debug\Topshelf.csprojResolveAssemblyReference.cache
