@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Timers;
 using log4net;
@@ -38,17 +39,14 @@ namespace Topshelf
     {
         private Timer timer;
         private Timer sendToApiTimer;
-
-        public ServiceManager()
-        {
-
-        }
-
-        
+        private int valueOne;
+        private int valueTwo;
         public void Start()
         {
             sendToApiTimer = new Timer();
-            sendToApiTimer.Interval = 1 * 60 * 1000;
+            valueOne = int.Parse(ConfigurationManager.AppSettings["FirstIntervalMinutes"]);
+            valueTwo = int.Parse(ConfigurationManager.AppSettings["SecondIntervalMinutes"]);
+            sendToApiTimer.Interval = valueOne * 60 * 1000;
             sendToApiTimer.Elapsed += api_timerElapsed;
             sendToApiTimer.Enabled = true;
             sendToApiTimer.Start();
@@ -75,15 +73,15 @@ namespace Topshelf
         private void MethodToRunEveryOneMinute()
         {
             string message;
-            message = "[Runs every 1 minute] - ";
+            message = "[Runs every " + valueOne + " minute(s)] - ";
             WriteMessage(message);
         }
 
         private void Initiate1600Method()
         {
-            TimeSpan span = TimeSpan.Parse("16:00:00");
+            string timespan = ConfigurationManager.AppSettings["DailyTime"];
+            TimeSpan span = TimeSpan.Parse(timespan);
             var runAt = DateTime.Today + span;
-            //var runAt = DateTime.Today + TimeSpan.FromHours(15);
             if (runAt < DateTime.Now)
             {
                 MethodtoRunAt1600();
@@ -98,7 +96,7 @@ namespace Topshelf
         private void MethodToRunEveryFiveMinutes()
         {
             string message;
-            message = "[Runs every two minutes] - ";
+            message = "[Runs every " + valueTwo + " minute(s)] - ";
             WriteMessage(message);
         }
 
