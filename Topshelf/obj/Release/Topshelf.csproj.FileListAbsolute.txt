@@ -1,0 +1,9 @@
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Release\Topshelf.exe.config
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Release\Topshelf.exe
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Release\Topshelf.pdb
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Release\log4net.dll
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Release\Topshelf.dll
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Release\log4net.xml
+E:\SourceCode\Topshelf-Service\Topshelf\bin\Release\Topshelf.xml
+E:\SourceCode\Topshelf-Service\Topshelf\obj\Release\Topshelf.exe
+E:\SourceCode\Topshelf-Service\Topshelf\obj\Release\Topshelf.pdb

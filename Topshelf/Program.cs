@@ -43,10 +43,16 @@ namespace Topshelf
         private int valueTwo;
         public void Start()
         {
-            WriteMessage("-- Service started -- ");
-            sendToApiTimer = new Timer();
+
+            var dailyTime = ConfigurationManager.AppSettings["DailyTime"];
             valueOne = int.Parse(ConfigurationManager.AppSettings["FirstIntervalMinutes"]);
             valueTwo = int.Parse(ConfigurationManager.AppSettings["SecondIntervalMinutes"]);
+
+            WriteMessage("-- Service started -- ");
+            string parameters = "parameters\n\t Daily Time: " + dailyTime + "\tFirst Interval: " + valueOne + "\tSecond Interval: " + valueTwo+"\n";
+            WriteMessage(parameters);
+
+            sendToApiTimer = new Timer();
             sendToApiTimer.Interval = valueOne * 60 * 1000;
             sendToApiTimer.Elapsed += api_timerElapsed;
             sendToApiTimer.Enabled = true;
