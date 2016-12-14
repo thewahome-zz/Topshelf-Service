@@ -43,6 +43,7 @@ namespace Topshelf
         private int valueTwo;
         public void Start()
         {
+            WriteMessage("-- Service started -- ");
             sendToApiTimer = new Timer();
             valueOne = int.Parse(ConfigurationManager.AppSettings["FirstIntervalMinutes"]);
             valueTwo = int.Parse(ConfigurationManager.AppSettings["SecondIntervalMinutes"]);
@@ -122,19 +123,19 @@ namespace Topshelf
 
         public void Stop()
         {
-            if (timer != null)
+            if (timer != null && sendToApiTimer != null)
             {
                 timer.Enabled = false;
                 timer.Stop();
                 timer.Dispose();
                 timer = null;
-            }
-            if (sendToApiTimer != null)
-            {
+
                 sendToApiTimer.Enabled = false;
                 sendToApiTimer.Stop();
                 sendToApiTimer.Dispose();
                 sendToApiTimer = null;
+
+                WriteMessage("-- Service Stopped -- ");
             }
         }
 
